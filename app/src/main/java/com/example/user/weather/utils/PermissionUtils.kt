@@ -5,20 +5,17 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 
-/**
- * Created by User on 18.12.2018.
- */
 class PermissionUtils {
     companion object {
         fun isLocationEnable(activity: Activity): Boolean {
 
             val permissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION)
-            if (isLocationGranted(activity)) return true
+                if (isLocationGranted(activity)) return true
 
-            ActivityCompat.requestPermissions(activity, permissions, 100)
+                ActivityCompat.requestPermissions(activity, permissions, 100)
 
-            return false
-        }
+                return false
+            }
 
 
         private fun isLocationGranted(context: Context): Boolean {

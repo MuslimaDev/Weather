@@ -5,9 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-/**
- * Created by User on 24.12.2018.
- */
 
 public class Example {
     @SerializedName("Version")

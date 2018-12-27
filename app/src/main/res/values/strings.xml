@@ -1,14 +1,7 @@
 <resources>
     <string name="app_name">Weather</string>
+    <string name="apikey">	A3YqUmDKFilXCF9JRia7xHsSVtkiGOsv</string>
+    <string name="locationKey"> 222844</string>
 
-    <string name="about_title">О программе</string>
-
-    <string name="about_text">
-    У лукоморья дуб зелёный;\n
-    Златая цепь на дубе том:\n
-    И днём и ночью <b>кот учёный</b>\n
-    Всё ходит по цепи кругом;\n
-    Идёт <b>направо</b> - песнь заводит,\n
-    <b>Налево</b> - сказку говорит.</string>
 
 </resources>

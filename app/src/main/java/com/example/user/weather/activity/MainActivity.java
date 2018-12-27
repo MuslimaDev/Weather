@@ -9,10 +9,12 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.user.weather.R;
-import com.example.user.weather.network.ApiService;
+import com.example.user.weather.Weather;
+import com.example.user.weather.models.location.Example;
+import com.example.user.weather.network.RetrofitService;
 import com.example.user.weather.utils.PermissionUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -21,22 +23,59 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
     private FusedLocationProviderClient mFusedLocationClient;
-    private ApiService service;
+    private TextView currentlocation;
+    private TextView temperature;
+    private TextView night;
+    private TextView maximum;
+    private RetrofitService service;
+    private Example model;
+    private String locationKey;
 
-
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        currentlocation = findViewById(R.id.currentlocation);
+        temperature = findViewById(R.id.temperature);
+        night = findViewById(R.id.nightTempInf);
+        maximum = findViewById(R.id.maxTempInf);
+        TextView minimum = findViewById(R.id.minimumTemp);
+        service = ((Weather)getApplication()).getService();
 
-        if(PermissionUtils.Companion.isLocationEnable(this)){
+        if (PermissionUtils.Companion.isLocationEnable(this)) {
             getCurrentLocation();
         }
     }
 
+        public void getLocationForWeather(String lat,String lng) {
+            service.getCurrentLocation(String.format("%1s,%2s", lat, lng), getString(R.string.apikey), "en-En")
+                    .enqueue(new Callback<Example>() {
+                @Override
+                public void onResponse(Call<Example> call, Response<Example> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                            model = response.body();
+                            currentlocation.setText(model.getLocalizedName());
+                            locationKey = model.getKey();
+
+                            Toast.makeText(getApplicationContext(), "My key: " + model.getKey().toString(), Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Сервер не отвечает", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                @Override
+                public void onFailure(Call<Example> call, Throwable t) {
+                    Toast.makeText(MainActivity.this, "Подключенияе к интернету отсутсвует", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -52,8 +91,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
 
-
-
+    @Override
     public void onLocationChanged(Location location) {
 
     }
@@ -82,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     };
 
 
+
     @SuppressLint("MissingPermission")
     public void startLocationUpdates() {
 
@@ -102,13 +141,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         mFusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
 
             public void onSuccess(Location location) {
-                Toast.makeText(getApplicationContext(),String.valueOf(location.getLatitude() + "||" + String.valueOf(location.getLongitude())),
+                Toast.makeText(getApplicationContext(),String.valueOf(location.getLatitude() + " | " + String.valueOf(location.getLongitude())),
                         Toast.LENGTH_LONG).show();
-                if (location != null){
+                    getLocationForWeather(String.valueOf(location.getLatitude()), String.valueOf(location.getLongitude()));
 
-                }
             }
         });
     }
-
 }
