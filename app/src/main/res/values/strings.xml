@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Weather</string>
-    <string name="apikey">	zrwVOZwuTlXRj6CpdEsT1MWqqvAZAEAE</string>
+    <string name="apikey">QZEL4eUN2rYCopJI7rAFJWT3RQNged0E</string>
     <string name="locationKey"> 222844</string>
     <string name="title_activity_five_days_forecast">FiveDaysForecastActivity</string>
-
 
 </resources>

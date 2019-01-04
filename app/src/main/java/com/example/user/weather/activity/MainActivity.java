@@ -1,6 +1,7 @@
 package com.example.user.weather.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -9,6 +10,7 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,13 +71,18 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     }
 
+    public void onClick(View view) {
+        Intent intent = new Intent(MainActivity.this, FiveDaysForecast.class);
+        startActivity(intent);
+    }
+
     /*    private void openFiveDaysForecastActivity() {
         Intent intent = new Intent(this, FiveDaysForecast.class);
         startActivity(intent);
     }*/
 
     public void getLocationForWeather(String lat, String lng) {
-        service.getCurrentLocation(String.format("%1s,%2s", lat, lng), getString(R.string.apikey), "en-En")
+        service.getCurrentLocation(String.format("%1s,%2s", lat, lng),"QZEL4eUN2rYCopJI7rAFJWT3RQNged0E", "en-En")
                 .enqueue(new Callback<ExampleLocation>() {
                     @Override
                     public void onResponse(Call<ExampleLocation> call, Response<ExampleLocation> response) {
@@ -98,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     public void getCurrentWeather(String locationKey) {
-        service.getCurrentWeather(locationKey, getString(R.string.apikey), "en").
+        service.getCurrentWeather(locationKey, "QZEL4eUN2rYCopJI7rAFJWT3RQNged0E", "en").
                 enqueue(new Callback<List<CurrentModel>>() {
                     @Override
                     public void onResponse(Call<List<CurrentModel>> call, Response<List<CurrentModel>> response) {
