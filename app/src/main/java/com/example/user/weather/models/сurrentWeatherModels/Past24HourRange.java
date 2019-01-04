@@ -1,13 +1,10 @@
-package com.example.user.weather.models;
 
-import com.google.gson.annotations.Expose;
+package com.example.user.weather.models.сurrentWeatherModels;
+
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by User on 24.12.2018.
- */
+public class Past24HourRange {
 
-public class Temperature {
     @SerializedName("Minimum")
     
     private Minimum minimum;
@@ -30,4 +27,5 @@ public class Temperature {
     public void setMaximum(Maximum maximum) {
         this.maximum = maximum;
     }
+
 }

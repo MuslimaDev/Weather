@@ -9,10 +9,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class Night {
     @SerializedName("Icon")
-    @Expose
+    
     private Integer icon;
     @SerializedName("IconPhrase")
-    @Expose
+    
     private String iconPhrase;
 
     public Integer getIcon() {

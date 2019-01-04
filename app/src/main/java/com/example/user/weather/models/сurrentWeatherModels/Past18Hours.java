@@ -1,14 +1,15 @@
-package com.example.user.weather.models.location;
 
-import com.google.gson.annotations.Expose;
+package com.example.user.weather.models.сurrentWeatherModels;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Elevation {
+public class Past18Hours {
+
     @SerializedName("Metric")
-    @Expose
+    
     private Metric metric;
     @SerializedName("Imperial")
-    @Expose
+    
     private Imperial imperial;
 
     public Metric getMetric() {
@@ -26,4 +27,5 @@ public class Elevation {
     public void setImperial(Imperial imperial) {
         this.imperial = imperial;
     }
+
 }

@@ -9,31 +9,31 @@ import com.google.gson.annotations.SerializedName;
 
 public class Headline {
     @SerializedName("EffectiveDate")
-    @Expose
+    
     private String effectiveDate;
     @SerializedName("EffectiveEpochDate")
-    @Expose
+    
     private Integer effectiveEpochDate;
     @SerializedName("Severity")
-    @Expose
+    
     private Integer severity;
     @SerializedName("Text")
-    @Expose
+    
     private String text;
     @SerializedName("Category")
-    @Expose
+    
     private String category;
     @SerializedName("EndDate")
-    @Expose
+    
     private String endDate;
     @SerializedName("EndEpochDate")
-    @Expose
+    
     private Integer endEpochDate;
     @SerializedName("MobileLink")
-    @Expose
+    
     private String mobileLink;
     @SerializedName("Link")
-    @Expose
+    
     private String link;
 
     public String getEffectiveDate() {

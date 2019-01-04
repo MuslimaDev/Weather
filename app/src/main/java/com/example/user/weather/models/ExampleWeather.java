@@ -9,13 +9,13 @@ import java.util.List;
  * Created by User on 24.12.2018.
  */
 
-public class Example {
+public class ExampleWeather {
     @SerializedName("Headline")
-    @Expose
+    
     private Headline headline;
     @SerializedName("DailyForecasts")
-    @Expose
-    private List<DailyForecast> dailyForecasts = null;
+    
+    private List<DailyForecast> dailyForecasts ;
 
     public Headline getHeadline() {
         return headline;

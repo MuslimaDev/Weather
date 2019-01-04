@@ -1,6 +1,5 @@
-package com.example.user.weather.models.location;
+package com.example.user.weather.models.locationModels;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -9,13 +8,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class GeoPosition {
     @SerializedName("Latitude")
-    @Expose
+    
     private Double latitude;
     @SerializedName("Longitude")
-    @Expose
+    
     private Double longitude;
     @SerializedName("Elevation")
-    @Expose
+    
     private Elevation elevation;
 
     public Double getLatitude() {

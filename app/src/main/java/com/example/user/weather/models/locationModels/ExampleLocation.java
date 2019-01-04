@@ -1,56 +1,55 @@
-package com.example.user.weather.models.location;
+package com.example.user.weather.models.locationModels;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 
-public class Example {
+public class ExampleLocation {
     @SerializedName("Version")
-    @Expose
+    
     private Integer version;
     @SerializedName("Key")
-    @Expose
+    
     private String key;
     @SerializedName("Type")
-    @Expose
+    
     private String type;
     @SerializedName("Rank")
-    @Expose
+    
     private Integer rank;
     @SerializedName("LocalizedName")
-    @Expose
+    
     private String localizedName;
     @SerializedName("EnglishName")
-    @Expose
+    
     private String englishName;
     @SerializedName("PrimaryPostalCode")
-    @Expose
+    
     private String primaryPostalCode;
     @SerializedName("Region")
-    @Expose
+    
     private Region region;
     @SerializedName("Country")
-    @Expose
+    
     private Country country;
     @SerializedName("AdministrativeArea")
-    @Expose
+    
     private AdministrativeArea administrativeArea;
     @SerializedName("TimeZone")
-    @Expose
+    
     private TimeZone timeZone;
     @SerializedName("GeoPosition")
-    @Expose
+    
     private GeoPosition geoPosition;
     @SerializedName("IsAlias")
-    @Expose
+    
     private Boolean isAlias;
     @SerializedName("SupplementalAdminAreas")
-    @Expose
+    
     private List<Object> supplementalAdminAreas = null;
     @SerializedName("DataSets")
-    @Expose
+    
     private List<Object> dataSets = null;
 
     public Integer getVersion() {

@@ -1,6 +1,5 @@
-package com.example.user.weather.models.location;
+package com.example.user.weather.models.locationModels;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -9,13 +8,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class Imperial {
     @SerializedName("Value")
-    @Expose
+    
     private Integer value;
     @SerializedName("Unit")
-    @Expose
+    
     private String unit;
     @SerializedName("UnitType")
-    @Expose
+    
     private Integer unitType;
 
     public Integer getValue() {

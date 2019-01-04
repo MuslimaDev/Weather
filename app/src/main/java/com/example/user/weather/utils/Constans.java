@@ -1,9 +1,5 @@
 package com.example.user.weather.utils;
 
-/**
- * Created by User on 24.12.2018.
- */
-
 public class Constans {
     public static final int SUCCESS_RESULT = 0;
     public static final int FAILURE_RESULT = 1;

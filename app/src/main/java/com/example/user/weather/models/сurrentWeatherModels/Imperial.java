@@ -1,13 +1,10 @@
-package com.example.user.weather.models;
 
-import com.google.gson.annotations.Expose;
+package com.example.user.weather.models.сurrentWeatherModels;
+
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by User on 24.12.2018.
- */
+public class Imperial {
 
-public class Minimum {
     @SerializedName("Value")
     
     private Double value;
@@ -41,4 +38,5 @@ public class Minimum {
     public void setUnitType(Integer unitType) {
         this.unitType = unitType;
     }
+
 }
