@@ -22,7 +22,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.FiveDaysForecast">
+        <activity android:name=".activity.FiveDaysForecast"/>
+        <activity android:name=".activity.SearchPlaceActivity">
         </activity>
 
 

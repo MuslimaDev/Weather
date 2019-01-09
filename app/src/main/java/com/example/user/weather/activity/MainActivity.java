@@ -10,6 +10,7 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -177,6 +178,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+                Intent intent = new Intent(this, SearchPlaceActivity.class);
+                startActivityForResult(intent, 0);
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
