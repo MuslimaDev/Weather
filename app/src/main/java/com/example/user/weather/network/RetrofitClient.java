@@ -1,5 +1,7 @@
 package com.example.user.weather.network;
 
+import com.example.user.weather.utils.Constans;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -8,7 +10,7 @@ public class RetrofitClient {
 
     public static Retrofit getRetrofitInstance(){
         return new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Constans.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }

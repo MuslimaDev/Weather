@@ -12,13 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.user.weather.R;
 import com.example.user.weather.Weather;
-import com.example.user.weather.models.сurrentWeatherModels.CurrentModel;
-import com.example.user.weather.models.сurrentWeatherModels.Maximum;
-import com.example.user.weather.models.сurrentWeatherModels.Minimum;
+import com.example.user.weather.models.currentWeatherModels.CurrentModel;
 import com.example.user.weather.models.DailyForecast;
 import com.example.user.weather.models.locationModels.ExampleLocation;
 import com.example.user.weather.network.RetrofitService;
@@ -29,32 +29,34 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
     private FusedLocationProviderClient mFusedLocationClient;
-    private TextView currentLocation, temperature, maximum, minimum;
+    private TextView currentLocation, temperature, /*feelsLike, wind, */visibility;
+    private ImageView icon;
     private RetrofitService service;
     private ExampleLocation model;
     private String locationKey;
     private CurrentModel currentModel;
     private Button button;
     private DailyForecast dailyForecast;
-    private Maximum max;
-    private Minimum min;
-
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         currentLocation = findViewById(R.id.currentlocation);
         temperature = findViewById(R.id.temperature);
-        maximum = findViewById(R.id.maxTempInf);
-        minimum = findViewById(R.id.minTempInf);
+       /* feelsLike = findViewById(R.id.feelsLike);
+        wind = findViewById(R.id.wind);*/
+        visibility = findViewById(R.id.visibility);
         service = ((Weather) getApplication()).getService();
 
         if (PermissionUtils.Companion.isLocationEnable(this)) {
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }*/
 
     public void getLocationForWeather(String lat, String lng) {
-        service.getCurrentLocation(String.format("%1s,%2s", lat, lng),getString(R.string.apikey), "en-En")
+        service.getCurrentLocation(String.format("%1s,%2s", lat, lng), getString(R.string.apikey), "en-En")
                 .enqueue(new Callback<ExampleLocation>() {
                     @Override
                     public void onResponse(Call<ExampleLocation> call, Response<ExampleLocation> response) {
@@ -113,12 +115,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
                         List<CurrentModel> dayForecast = response.body();
                         currentModel = dayForecast.get(0);
-                       /*max = dayForecast.get(0).getTemperatureSummary().getPast12HourRange().getMaximum();
-                       min = dayForecast.get(0).getTemperatureSummary().getPast12HourRange().getMinimum();*/
                         if (response.isSuccessful() && response.body() != null) {
-                            temperature.setText(currentModel.getTemperature().getMetric().getValue().toString() + "°");
-                        /* maximum.setText(max.toString());
-                           minimum.setText(min.toString());*/
+                           temperature.setText(currentModel.getTemperature().getMetric().getValue().toString() + "°" + currentModel.getTemperature().getMetric().getUnit());
                         } else {
                             Toast.makeText(getApplicationContext(), "Сервер не отвечает", Toast.LENGTH_LONG).show();
                         }
@@ -129,8 +127,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         Toast.makeText(getApplicationContext(), "Подключения к интернету отсутсвует", Toast.LENGTH_LONG).show();
                     }
                 });
-
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
