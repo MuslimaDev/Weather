@@ -29,10 +29,7 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_place);
         service = ((Weather) getApplication()).getService();
-        editText = findViewById(R.id.edit_textSearch);
-        listView = findViewById(R.id.list_town);
         listView.setOnItemClickListener((AdapterView.OnItemClickListener) this);
         button = findViewById(R.id.searchButton);
         button.setOnClickListener((View.OnClickListener) this);
@@ -41,7 +38,7 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
 
     private void forSearchPlace() {
         showProgressBar();
-        service.searchingPlace(editText.getText().toString(), getString(R.string.apikey), "ru-Ru")
+        service.searchingPlace(editText.getText().toString(), getString(R.string.apikey2), "ru-Ru")
                 .enqueue(new Callback<List<SearchPlaceModel>>() {
                     @Override
                     public void onResponse(Call<List<SearchPlaceModel>> call, Response<List<SearchPlaceModel>> response) {
@@ -52,7 +49,6 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
                             for (int i = 0; i < searchPlaceModel.size(); i++) {
                                 arrayList.add(searchPlaceModel.get(i).getLocalizedName() + "\n" +
                                         searchPlaceModel.get(i).getAdministrativeArea().getLocalizedName() + ", " + searchPlaceModel.get(i).getCountry().getLocalizedName());
-
                             }
                             ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, arrayList);
                             listView.setAdapter(adapter);

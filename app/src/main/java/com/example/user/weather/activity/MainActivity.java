@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.example.user.weather.R;
 import com.example.user.weather.Weather;
-import com.example.user.weather.models.currentWeatherModels.CurrentModel;
+import com.example.user.weather.models.curWeatherModels.CurrentWeather;
 import com.example.user.weather.models.DailyForecast;
 import com.example.user.weather.models.locationModels.ExampleLocation;
 import com.example.user.weather.network.RetrofitService;
@@ -41,12 +41,12 @@ import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
     private FusedLocationProviderClient mFusedLocationClient;
-    private TextView currentLocation, temperature, /*feelsLike, wind, */visibility;
+    private TextView currentLocation, temperature, feelsLike, wind, visibility;
     private ImageView icon;
     private RetrofitService service;
     private ExampleLocation model;
     private String locationKey;
-    private CurrentModel currentModel;
+    private CurrentWeather currentModel;
     private Button button;
     private DailyForecast dailyForecast;
 
@@ -55,22 +55,23 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setContentView(R.layout.activity_main);
         currentLocation = findViewById(R.id.currentlocation);
         temperature = findViewById(R.id.temperature);
-       /* feelsLike = findViewById(R.id.feelsLike);
-        wind = findViewById(R.id.wind);*/
+        feelsLike = findViewById(R.id.feelsLike);
+        wind = findViewById(R.id.wind);
         visibility = findViewById(R.id.visibility);
         service = ((Weather) getApplication()).getService();
 
         if (PermissionUtils.Companion.isLocationEnable(this)) {
             getCurrentLocation();
         }
-/*
+
         button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 openFiveDaysForecastActivity();
             }
-        });*/
+        });
 
     }
 
@@ -79,13 +80,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         startActivity(intent);
     }
 
-    /*    private void openFiveDaysForecastActivity() {
+        private void openFiveDaysForecastActivity() {
         Intent intent = new Intent(this, FiveDaysForecast.class);
         startActivity(intent);
-    }*/
+    }
 
     public void getLocationForWeather(String lat, String lng) {
-        service.getCurrentLocation(String.format("%1s,%2s", lat, lng), getString(R.string.apikey), "en-En")
+        service.getCurrentLocation(String.format("%1s,%2s", lat, lng), getString(R.string.apikey2), "en-En")
                 .enqueue(new Callback<ExampleLocation>() {
                     @Override
                     public void onResponse(Call<ExampleLocation> call, Response<ExampleLocation> response) {
@@ -102,34 +103,37 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
                     @Override
                     public void onFailure(Call<ExampleLocation> call, Throwable throwable) {
-                        Toast.makeText(MainActivity.this, "Подключение к интернету отсутсвует", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Подключение к интернету отсутсвует 1", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     public void getCurrentWeather(String locationKey) {
-        service.getCurrentWeather(locationKey, getString(R.string.apikey), "en").
-                enqueue(new Callback<List<CurrentModel>>() {
+        service.getCurrentWeather(locationKey, getString(R.string.apikey2), "en",true).
+                enqueue(new Callback<List<CurrentWeather>>() {
                     @Override
-                    public void onResponse(Call<List<CurrentModel>> call, Response<List<CurrentModel>> response) {
+                    public void onResponse(Call<List<CurrentWeather>> call, Response<List<CurrentWeather>> response) {
                         Log.d("Response ", response.toString());
                         Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
-                        List<CurrentModel> dayForecast = response.body();
-                        currentModel = dayForecast.get(0);
+                        List<CurrentWeather> currentWeather = response.body();
+                        currentModel = currentWeather.get(0);
                         if (response.isSuccessful() && response.body() != null) {
-                           temperature.setText(currentModel.getTemperature().getMetric().getValue().toString() + "°" + currentModel.getTemperature().getMetric().getUnit());
+                            temperature.setText(currentModel.getTemperature().getMetric().getValue().toString() + "°" + currentModel.getTemperature().getMetric().getUnit());
+                         //   feelsLike.setText(currentModel.getRealFeelTemperature().getMetric().getValue().toString());
+                         //   wind.setText(currentModel.getWind().getSpeed().getMetric().getValue().toString() + currentModel.getWind().getSpeed().getMetric().getUnit());
+                           // visibility.setText(currentModel.getVisibility().getMetric().getValue().toString() + currentModel.getVisibility().getMetric().getUnit());
                         } else {
                             Toast.makeText(getApplicationContext(), "Сервер не отвечает", Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<List<CurrentModel>> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Подключения к интернету отсутсвует", Toast.LENGTH_LONG).show();
+                    public void onFailure(Call<List<CurrentWeather>> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Подключения к интернету отсутсвует 2", Toast.LENGTH_LONG).show();
+                        Log.d("Throwable",t.toString());
                     }
                 });
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -173,6 +177,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             public void onSuccess(Location location) {
                 Toast.makeText(getApplicationContext(), String.valueOf(location.getLatitude() + " | " + String.valueOf(location.getLongitude())),
                         Toast.LENGTH_LONG).show();
+                /*Toast.makeText(getApplicationContext(), String.valueOf("Feel like: " + currentModel.getRealFeelTemperature().getMetric().getValue().toString()),
+                        Toast.LENGTH_LONG).show();*/
                 if (location != null) {
                     getLocationForWeather(String.valueOf(location.getLatitude()), String.valueOf(location.getLongitude()));
                 }
