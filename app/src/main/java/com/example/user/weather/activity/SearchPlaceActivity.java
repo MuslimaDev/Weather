@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import com.example.user.weather.R;
 import com.example.user.weather.Weather;
-import com.example.user.weather.models.searchingModels.SearchPlaceModel;
+import com.example.user.weather.models.searchPlaceModels.SearchPlaceModel;
 import com.example.user.weather.network.RetrofitService;
 import java.util.ArrayList;
 import java.util.List;

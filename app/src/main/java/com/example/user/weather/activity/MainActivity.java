@@ -19,10 +19,10 @@ import android.widget.Toast;
 
 import com.example.user.weather.R;
 import com.example.user.weather.Weather;
-import com.example.user.weather.models.curWeatherModels.CurrentWeather;
-import com.example.user.weather.models.DailyForecast;
-import com.example.user.weather.models.locationModels.ExampleLocation;
+import com.example.user.weather.models.Example;
+import com.example.user.weather.models.currentWeatherModels.CurrentModel;
 import com.example.user.weather.network.RetrofitService;
+import com.example.user.weather.utils.Constans;
 import com.example.user.weather.utils.PermissionUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -30,6 +30,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,18 +38,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.content.ContentValues.TAG;
-
 public class MainActivity extends AppCompatActivity implements LocationListener {
     private FusedLocationProviderClient mFusedLocationClient;
     private TextView currentLocation, temperature, feelsLike, wind, visibility;
-    private ImageView icon;
+    private ImageView imageView;
     private RetrofitService service;
-    private ExampleLocation model;
+    private Example model;
     private String locationKey;
-    private CurrentWeather currentModel;
+    private CurrentModel currentModel;
     private Button button;
-    private DailyForecast dailyForecast;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,79 +56,82 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         feelsLike = findViewById(R.id.feelsLike);
         wind = findViewById(R.id.wind);
         visibility = findViewById(R.id.visibility);
+        imageView = findViewById(R.id.weatherIcon);
         service = ((Weather) getApplication()).getService();
-
+       /* button = findViewById(R.id.button);
+        button.setOnClickListener((View.OnClickListener) this);
+*/
         if (PermissionUtils.Companion.isLocationEnable(this)) {
             getCurrentLocation();
         }
-
-        button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                openFiveDaysForecastActivity();
-            }
-        });
-
     }
+/*
 
     public void onClick(View view) {
         Intent intent = new Intent(MainActivity.this, FiveDaysForecast.class);
+        intent.putExtra("locationKey", locationKey);
         startActivity(intent);
+
+        openFiveDaysForecastActivity();
     }
 
-        private void openFiveDaysForecastActivity() {
+    private void openFiveDaysForecastActivity() {
         Intent intent = new Intent(this, FiveDaysForecast.class);
         startActivity(intent);
     }
+*/
 
     public void getLocationForWeather(String lat, String lng) {
-        service.getCurrentLocation(String.format("%1s,%2s", lat, lng), getString(R.string.apikey2), "en-En")
-                .enqueue(new Callback<ExampleLocation>() {
+        service.getCurrentLocation(String.format("%1s,%2s", lat, lng), getString(R.string.apikey3), "en-En")
+                .enqueue(new Callback<Example>() {
                     @Override
-                    public void onResponse(Call<ExampleLocation> call, Response<ExampleLocation> response) {
+                    public void onResponse(Call<Example> call, Response<Example> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             model = response.body();
                             currentLocation.setText(model.getLocalizedName());
                             locationKey = model.getKey();
                             getCurrentWeather(locationKey);
-                            Toast.makeText(getApplicationContext(), "My key: " + model.getKey().toString(), Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<ExampleLocation> call, Throwable throwable) {
+                    public void onFailure(Call<Example> call, Throwable throwable) {
                         Toast.makeText(MainActivity.this, "Подключение к интернету отсутсвует 1", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     public void getCurrentWeather(String locationKey) {
-        service.getCurrentWeather(locationKey, getString(R.string.apikey2), "en",true).
-                enqueue(new Callback<List<CurrentWeather>>() {
+        service.getCurrentWeather(locationKey, getString(R.string.apikey3), "en", true).
+                enqueue(new Callback<List<CurrentModel>>() {
                     @Override
-                    public void onResponse(Call<List<CurrentWeather>> call, Response<List<CurrentWeather>> response) {
+                    public void onResponse(Call<List<CurrentModel>> call, Response<List<CurrentModel>> response) {
                         Log.d("Response ", response.toString());
-                        Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
-                        List<CurrentWeather> currentWeather = response.body();
+                        List<CurrentModel> currentWeather = response.body();
                         currentModel = currentWeather.get(0);
                         if (response.isSuccessful() && response.body() != null) {
                             temperature.setText(currentModel.getTemperature().getMetric().getValue().toString() + "°" + currentModel.getTemperature().getMetric().getUnit());
-                         //   feelsLike.setText(currentModel.getRealFeelTemperature().getMetric().getValue().toString());
-                         //   wind.setText(currentModel.getWind().getSpeed().getMetric().getValue().toString() + currentModel.getWind().getSpeed().getMetric().getUnit());
-                           // visibility.setText(currentModel.getVisibility().getMetric().getValue().toString() + currentModel.getVisibility().getMetric().getUnit());
+                            feelsLike.setText(currentModel.getRealFeelTemperature().getMetric().getValue().toString() + "°" + currentModel.getRealFeelTemperature().getMetric().getUnit());
+                            wind.setText(currentModel.getWind().getSpeed().getMetric().getValue().toString() + " " +  currentModel.getWind().getSpeed().getMetric().getUnit());
+                            visibility.setText(currentModel.getVisibility().getMetric().getValue().toString() + " " + currentModel.getVisibility().getMetric().getUnit());
+                            int icon = currentModel.getWeatherIcon();
+                            String imageUrl;
+                            if (icon < 10) {
+                                imageUrl = String.format(Constans.ICONS_URL, icon);
+                            } else {
+                                imageUrl = String.format(Constans.ICONS_URLMORE, icon);
+                            }
+                            Picasso.get().load(imageUrl).into(imageView);
                         } else {
                             Toast.makeText(getApplicationContext(), "Сервер не отвечает", Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<List<CurrentWeather>> call, Throwable t) {
+                    public void onFailure(Call<List<CurrentModel>> call, Throwable t) {
                         Toast.makeText(getApplicationContext(), "Подключения к интернету отсутсвует 2", Toast.LENGTH_LONG).show();
-                        Log.d("Throwable",t.toString());
                     }
                 });
     }
@@ -152,7 +153,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         @Override
         public void onLocationResult(LocationResult locationResult) {
             super.onLocationResult(locationResult);
-            Log.d(TAG, "onLocationChanged: " + locationResult.getLastLocation().getLongitude() + " " + locationResult.getLastLocation().getLatitude());
         }
     };
 
@@ -175,10 +175,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         mFusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
 
             public void onSuccess(Location location) {
-                Toast.makeText(getApplicationContext(), String.valueOf(location.getLatitude() + " | " + String.valueOf(location.getLongitude())),
-                        Toast.LENGTH_LONG).show();
-                /*Toast.makeText(getApplicationContext(), String.valueOf("Feel like: " + currentModel.getRealFeelTemperature().getMetric().getValue().toString()),
-                        Toast.LENGTH_LONG).show();*/
                 if (location != null) {
                     getLocationForWeather(String.valueOf(location.getLatitude()), String.valueOf(location.getLongitude()));
                 }
@@ -188,8 +184,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-                Intent intent = new Intent(this, SearchPlaceActivity.class);
-                startActivityForResult(intent, 0);
+        Intent intent = new Intent(this, SearchPlaceActivity.class);
+        startActivityForResult(intent, 0);
         return super.onOptionsItemSelected(item);
     }
 
