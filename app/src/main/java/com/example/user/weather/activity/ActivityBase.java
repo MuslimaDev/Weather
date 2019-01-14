@@ -21,7 +21,7 @@ public abstract class ActivityBase extends AppCompatActivity {
     protected void showProgressBar() {
         if (mDialog == null) {
             mDialog = new ProgressDialog(this);
-            mDialog.setMessage(" Загрузка погоды ");
+            mDialog.setMessage("Daily Forecast");
             mDialog.show();
         }
     }

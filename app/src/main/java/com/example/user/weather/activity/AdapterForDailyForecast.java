@@ -1,4 +1,3 @@
-/*
 package com.example.user.weather.activity;
 
 import android.content.Context;
@@ -24,6 +23,11 @@ public class AdapterForDailyForecast extends ArrayAdapter {
     List<DailyForecast> list;
     Headline headline;
 
+    private class ViewHolder {
+        TextView date,maximum, minimum;
+        ImageView image;
+
+    }
 
     public AdapterForDailyForecast(@NonNull Context context, List<DailyForecast> list) {
         super(context, 0, list);
@@ -40,12 +44,9 @@ public class AdapterForDailyForecast extends ArrayAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.daily_activity, parent, false);
-
-            holder.firstDay = convertView.findViewById(R.id.firstDay);
-            holder.firstDayIcon = convertView.findViewById(R.id.firstDayIcon);
-            holder.firstDayMax = convertView.findViewById(R.id.firstDayMax);
-            holder.firstDayMin = convertView.findViewById(R.id.firstDayMin);
-
+            holder.date = convertView.findViewById(R.id.date);
+            holder.maximum = convertView.findViewById(R.id.maximum);
+            holder.minimum = convertView.findViewById(R.id.minimum);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -53,10 +54,11 @@ public class AdapterForDailyForecast extends ArrayAdapter {
         DailyForecast model = (DailyForecast) getItem(position);
 
         if (model != null) {
-            holder.firstDay.setText(String.valueOf(headline.getEffectiveDate()));
-            holder.firstDayMin.setText(String.valueOf(model.getTemperature().getMaximum().getValue().toString() + " " + model.getTemperature().getMaximum().getUnit()));
-            holder.firstDayMin.setText(String.valueOf(model.getTemperature().getMinimum().getValue().toString() + " " + model.getTemperature().getMinimum().getUnit()));
+            holder.date.setText(String.valueOf(headline.getEffectiveDate()));
+            holder.maximum.setText(model.getTemperature().getMaximum().getValue().toString() + "°" + model.getTemperature().getMaximum().getUnit());
+            holder.minimum.setText(model.getTemperature().getMinimum().getValue().toString() + "°" + model.getTemperature().getMinimum().getUnit());
             int icon = model.getDay().getIcon();
+
             String imageUrl;
             if (icon < 10) {
                 imageUrl = String.format(Constans.ICONS_URL, icon);
@@ -69,10 +71,4 @@ public class AdapterForDailyForecast extends ArrayAdapter {
         return convertView;
     }
 
-    private class ViewHolder {
-        TextView firstDay, firstDayIcon, firstDayMax, firstDayMin;
-        ImageView image;
-
-    }
 }
-*/

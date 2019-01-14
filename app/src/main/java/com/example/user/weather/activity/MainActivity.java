@@ -38,7 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements LocationListener {
+public class MainActivity extends AppCompatActivity implements LocationListener, View.OnClickListener {
     private FusedLocationProviderClient mFusedLocationClient;
     private TextView currentLocation, temperature, feelsLike, wind, visibility;
     private ImageView imageView;
@@ -58,28 +58,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         visibility = findViewById(R.id.visibility);
         imageView = findViewById(R.id.weatherIcon);
         service = ((Weather) getApplication()).getService();
-       /* button = findViewById(R.id.button);
-        button.setOnClickListener((View.OnClickListener) this);
-*/
+        button = findViewById(R.id.button);
+        button.setOnClickListener(this);
         if (PermissionUtils.Companion.isLocationEnable(this)) {
             getCurrentLocation();
         }
     }
-/*
 
     public void onClick(View view) {
         Intent intent = new Intent(MainActivity.this, FiveDaysForecast.class);
         intent.putExtra("locationKey", locationKey);
         startActivity(intent);
-
-        openFiveDaysForecastActivity();
     }
 
-    private void openFiveDaysForecastActivity() {
-        Intent intent = new Intent(this, FiveDaysForecast.class);
-        startActivity(intent);
-    }
-*/
 
     public void getLocationForWeather(String lat, String lng) {
         service.getCurrentLocation(String.format("%1s,%2s", lat, lng), getString(R.string.apikey3), "en-En")

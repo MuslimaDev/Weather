@@ -2,7 +2,9 @@ package com.example.user.weather.network;
 
 import com.example.user.weather.models.currentWeatherModels.CurrentModel;
 import com.example.user.weather.models.Example;
+import com.example.user.weather.models.forecastModels.Forecast;
 import com.example.user.weather.models.searchPlaceModels.SearchPlaceModel;
+import com.example.user.weather.utils.Constans;
 
 import java.util.List;
 
@@ -27,6 +29,13 @@ public interface RetrofitService {
     Call<List<SearchPlaceModel>> searchingPlace(@Query("q") String q,
                                                 @Query("apikey") String apikey,
                                                 @Query("language") String language);
+
+    @GET(Constans.URL_FORECAST + "{name}")
+    Call<Forecast> getWeatherForecast(@Path("name") String name,
+                                      @Query("apikey") String apikey,
+                                      @Query("language") String language,
+                                      @Query("details") boolean details,
+                                      @Query("metric") boolean metric);
 
 
 }
