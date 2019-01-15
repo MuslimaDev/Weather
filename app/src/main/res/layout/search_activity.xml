@@ -11,11 +11,11 @@
         android:inputType="text"
         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:textColor="@android:color/white"
-        android:id="@+id/edit_textSearch"
+        android:id="@+id/textLine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <Button
-        android:text="поиск"
+        android:text="SEARCH"
         android:id="@+id/searchButton"
         android:layout_gravity="center"
         android:layout_width="wrap_content"

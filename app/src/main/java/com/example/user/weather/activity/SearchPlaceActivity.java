@@ -31,7 +31,7 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity);
         service = ((Weather) getApplication()).getService();
-        editText = findViewById(R.id.edit_textSearch);
+        editText = findViewById(R.id.textLine);
         listView = findViewById(R.id.list_town);
         listView.setOnItemClickListener(this);
         button = findViewById(R.id.searchButton);
@@ -41,7 +41,7 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
 
     private void forSearchPlace() {
         showProgressBar();
-        service.searchingPlace(editText.getText().toString(), getString(R.string.apikey4), "ru-Ru")
+        service.searchingPlace(editText.getText().toString(), getString(R.string.apikey3), "ru-Ru")
                 .enqueue(new Callback<List<SearchPlaceModel>>() {
                     @Override
                     public void onResponse(Call<List<SearchPlaceModel>> call, Response<List<SearchPlaceModel>> response) {
