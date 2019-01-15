@@ -38,7 +38,7 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
 
     private void forSearchPlace() {
         showProgressBar();
-        service.searchingPlace(editText.getText().toString(), getString(R.string.apikey3), "ru-Ru")
+        service.searchingPlace(editText.getText().toString(), getString(R.string.apikey4), "ru-Ru")
                 .enqueue(new Callback<List<SearchPlaceModel>>() {
                     @Override
                     public void onResponse(Call<List<SearchPlaceModel>> call, Response<List<SearchPlaceModel>> response) {

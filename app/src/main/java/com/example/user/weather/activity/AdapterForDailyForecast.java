@@ -3,6 +3,7 @@ package com.example.user.weather.activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +22,9 @@ import java.util.List;
 public class AdapterForDailyForecast extends ArrayAdapter {
     Context context;
     List<DailyForecast> list;
-    Headline headline;
 
     private class ViewHolder {
-        TextView date,maximum, minimum;
+        TextView date, maximum, minimum;
         ImageView image;
 
     }
@@ -47,14 +47,16 @@ public class AdapterForDailyForecast extends ArrayAdapter {
             holder.date = convertView.findViewById(R.id.date);
             holder.maximum = convertView.findViewById(R.id.maximum);
             holder.minimum = convertView.findViewById(R.id.minimum);
+            holder.image = convertView.findViewById(R.id.icon);
             convertView.setTag(holder);
+            Log.d("getWeatherMore", holder.toString());
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
         DailyForecast model = (DailyForecast) getItem(position);
 
         if (model != null) {
-            holder.date.setText(String.valueOf(headline.getEffectiveDate()));
+            holder.date.setText(String.valueOf(model.getDate()));
             holder.maximum.setText(model.getTemperature().getMaximum().getValue().toString() + "°" + model.getTemperature().getMaximum().getUnit());
             holder.minimum.setText(model.getTemperature().getMinimum().getValue().toString() + "°" + model.getTemperature().getMinimum().getUnit());
             int icon = model.getDay().getIcon();

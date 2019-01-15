@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 public abstract class ActivityBase extends AppCompatActivity {
-    private ProgressDialog mDialog;
+    private ProgressDialog dialog;
 
     @Override
     public void setContentView(int layoutResID) {
@@ -19,19 +19,19 @@ public abstract class ActivityBase extends AppCompatActivity {
     }
 
     protected void showProgressBar() {
-        if (mDialog == null) {
-            mDialog = new ProgressDialog(this);
-            mDialog.setMessage("Daily Forecast");
-            mDialog.show();
+        if (dialog == null) {
+            dialog = new ProgressDialog(this);
+            dialog.setMessage("Daily Forecast");
+            dialog.show();
         }
     }
 
     protected void dismissProgressBar() {
-        if (mDialog != null && mDialog.isShowing()) {
-            mDialog.dismiss();
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
 
         }
-        mDialog = null;
+        dialog = null;
     }
 
 }

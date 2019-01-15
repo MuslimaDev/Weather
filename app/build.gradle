@@ -48,6 +48,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+
+    //удалить, если не будет работать
+    implementation 'io.realm:android-adapters:2.1.1'
+    implementation 'org.parceler:parceler-api:1.1.9'
+    annotationProcessor 'org.parceler:parceler:1.1.9'
 }
 repositories {
     mavenCentral()

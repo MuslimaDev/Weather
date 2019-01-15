@@ -2,6 +2,7 @@ package com.example.user.weather.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,26 +22,28 @@ public class FiveDaysForecast extends ActivityBase {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.daily_activity);
+        setContentView(R.layout.activity_forecast);
         service = ((Weather) getApplication()).getService();
         listView = findViewById(R.id.showMoreList);
-        showProgressBar();
         getWeatherMore();
+
 
     }
 
     private void getWeatherMore() {
+        showProgressBar();
         Intent intent = getIntent();
-        service.getWeatherForecast(intent.getStringExtra("locationKey"), getString(R.string.apikey3), "ru-RU", true, true)
+        service.getWeatherForecast(intent.getStringExtra("locationKey"), getString(R.string.apikey2), "ru-RU", true, true)
                 .enqueue(new Callback<Forecast>() {
                     @Override
                     public void onResponse(Call<Forecast> call, Response<Forecast> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             Forecast model = response.body();
 
-                          /*  AdapterForDailyForecast adapter = new AdapterForDailyForecast(getApplicationContext(),
+                            AdapterForDailyForecast adapter = new AdapterForDailyForecast(getApplicationContext(),
                                     model.getDailyForecasts());
-                           listView.setAdapter(adapter); */
+                            listView.setAdapter(adapter);
+                            Log.d("getWeatherMore", adapter.toString());
                         } else {
                             Toast.makeText(getApplicationContext(), "Данные не найдены ", Toast.LENGTH_LONG).show();
 
