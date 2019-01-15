@@ -29,10 +29,10 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.);
+        setContentView(R.layout.search_activity);
         service = ((Weather) getApplication()).getService();
-        //editText = findViewById(R.id.);
-        //listView = findViewById(R.id.);
+        editText = findViewById(R.id.edit_textSearch);
+        listView = findViewById(R.id.list_town);
         listView.setOnItemClickListener(this);
         button = findViewById(R.id.searchButton);
         button.setOnClickListener(this);
