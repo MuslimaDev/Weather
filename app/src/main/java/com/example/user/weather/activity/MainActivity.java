@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     }
 
     public void getLocationForWeather(String lat, String lng) {
-        service.getCurrentLocation(String.format("%1s,%2s", lat, lng), getString(R.string.apikey3), "en-En")
+        service.getCurrentLocation(String.format("%1s,%2s", lat, lng), getString(R.string.apikey3), "en")
                 .enqueue(new Callback<Example>() {
                     @Override
                     public void onResponse(Call<Example> call, Response<Example> response) {

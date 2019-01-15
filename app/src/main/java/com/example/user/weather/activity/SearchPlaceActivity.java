@@ -41,14 +41,15 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
 
 
     private void forSearchPlace() {
+        Log.d("SearchPlace" , "openMethod");
         showProgressBar();
         service.searchingPlace(editText.getText().toString(), getString(R.string.apikey3), "en")
                 .enqueue(new Callback<List<SearchPlaceModel>>() {
                     @Override
                     public void onResponse(Call<List<SearchPlaceModel>> call, Response<List<SearchPlaceModel>> response) {
-
                         if (response.isSuccessful() && response.body() != null) {
                             searchPlaceModel = response.body();
+                            Log.d("SearchPlace Model" , searchPlaceModel.toString());
                             ArrayList<String> arrayList = new ArrayList();
                             for (int i = 0; i < searchPlaceModel.size(); i++) {
                                 arrayList.add(searchPlaceModel.get(i).getLocalizedName() + "\n" +
