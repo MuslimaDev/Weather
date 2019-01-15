@@ -2,6 +2,7 @@ package com.example.user.weather.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -41,10 +42,11 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
 
     private void forSearchPlace() {
         showProgressBar();
-        service.searchingPlace(editText.getText().toString(), getString(R.string.apikey3), "ru-Ru")
+        service.searchingPlace(editText.getText().toString(), getString(R.string.apikey3), "en")
                 .enqueue(new Callback<List<SearchPlaceModel>>() {
                     @Override
                     public void onResponse(Call<List<SearchPlaceModel>> call, Response<List<SearchPlaceModel>> response) {
+
                         if (response.isSuccessful() && response.body() != null) {
                             searchPlaceModel = response.body();
                             ArrayList<String> arrayList = new ArrayList();
