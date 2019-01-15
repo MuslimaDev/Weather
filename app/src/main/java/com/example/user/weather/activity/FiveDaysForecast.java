@@ -33,7 +33,7 @@ public class FiveDaysForecast extends ActivityBase {
     private void getWeatherMore() {
         showProgressBar();
         Intent intent = getIntent();
-        service.getWeatherForecast(intent.getStringExtra("locationKey"), getString(R.string.apikey2), "ru-RU", true, true)
+        service.getWeatherForecast(intent.getStringExtra("locationKey"), getString(R.string.apikey4), "ru-RU", true, true)
                 .enqueue(new Callback<Forecast>() {
                     @Override
                     public void onResponse(Call<Forecast> call, Response<Forecast> response) {

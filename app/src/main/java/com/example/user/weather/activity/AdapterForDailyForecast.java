@@ -13,10 +13,10 @@ import android.widget.TextView;
 
 import com.example.user.weather.R;
 import com.example.user.weather.models.forecastModels.DailyForecast;
-import com.example.user.weather.models.forecastModels.Headline;
 import com.example.user.weather.utils.Constans;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class AdapterForDailyForecast extends ArrayAdapter {
@@ -26,14 +26,12 @@ public class AdapterForDailyForecast extends ArrayAdapter {
     private class ViewHolder {
         TextView date, maximum, minimum;
         ImageView image;
-
     }
 
     public AdapterForDailyForecast(@NonNull Context context, List<DailyForecast> list) {
         super(context, 0, list);
         this.context = context;
         this.list = list;
-
     }
 
     @NonNull
@@ -56,7 +54,7 @@ public class AdapterForDailyForecast extends ArrayAdapter {
         DailyForecast model = (DailyForecast) getItem(position);
 
         if (model != null) {
-            holder.date.setText(String.valueOf(model.getDate()));
+            holder.date.setText(model.getDate());
             holder.maximum.setText(model.getTemperature().getMaximum().getValue().toString() + "°" + model.getTemperature().getMaximum().getUnit());
             holder.minimum.setText(model.getTemperature().getMinimum().getValue().toString() + "°" + model.getTemperature().getMinimum().getUnit());
             int icon = model.getDay().getIcon();

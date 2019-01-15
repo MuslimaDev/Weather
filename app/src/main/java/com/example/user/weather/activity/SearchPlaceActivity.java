@@ -29,10 +29,13 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.);
         service = ((Weather) getApplication()).getService();
-        listView.setOnItemClickListener((AdapterView.OnItemClickListener) this);
+        //editText = findViewById(R.id.);
+        //listView = findViewById(R.id.);
+        listView.setOnItemClickListener(this);
         button = findViewById(R.id.searchButton);
-        button.setOnClickListener((View.OnClickListener) this);
+        button.setOnClickListener(this);
     }
 
 
@@ -43,7 +46,6 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
                     @Override
                     public void onResponse(Call<List<SearchPlaceModel>> call, Response<List<SearchPlaceModel>> response) {
                         if (response.isSuccessful() && response.body() != null) {
-                            // Toast.makeText(getApplicationContext(), " RESPONSE NOT NULL", Toast.LENGTH_LONG).show();
                             searchPlaceModel = response.body();
                             ArrayList<String> arrayList = new ArrayList();
                             for (int i = 0; i < searchPlaceModel.size(); i++) {
@@ -71,7 +73,6 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-
         forSearchPlace();
     }
 
