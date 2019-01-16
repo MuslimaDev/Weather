@@ -1,16 +1,16 @@
 
 package com.example.user.weather.models.currentWeatherModels;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Wind {
 
     @SerializedName("Direction")
-    @Expose
+
     private Direction direction;
     @SerializedName("Speed")
-    @Expose
+
     private Speed speed;
 
     public Direction getDirection() {

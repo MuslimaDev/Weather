@@ -1,16 +1,16 @@
 
 package com.example.user.weather.models.forecastModels;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Temperature {
 
     @SerializedName("Minimum")
-    @Expose
+
     private Minimum minimum;
     @SerializedName("Maximum")
-    @Expose
+
     private Maximum maximum;
 
     public Minimum getMinimum() {

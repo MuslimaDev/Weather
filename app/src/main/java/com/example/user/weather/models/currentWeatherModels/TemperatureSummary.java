@@ -1,19 +1,19 @@
 
 package com.example.user.weather.models.currentWeatherModels;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 public class TemperatureSummary {
 
     @SerializedName("Past6HourRange")
-    @Expose
+
     private Past6HourRange past6HourRange;
     @SerializedName("Past12HourRange")
-    @Expose
+
     private Past12HourRange past12HourRange;
     @SerializedName("Past24HourRange")
-    @Expose
+
     private Past24HourRange past24HourRange;
 
     public Past6HourRange getPast6HourRange() {

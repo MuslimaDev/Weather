@@ -1,13 +1,13 @@
 
 package com.example.user.weather.models.currentWeatherModels;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 public class WindGust {
 
     @SerializedName("Speed")
-    @Expose
+
     private Speed_ speed;
 
     public Speed_ getSpeed() {

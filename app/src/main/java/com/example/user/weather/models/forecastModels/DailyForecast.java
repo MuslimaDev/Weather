@@ -1,7 +1,7 @@
 
 package com.example.user.weather.models.forecastModels;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -9,28 +9,28 @@ import java.util.List;
 public class DailyForecast {
 
     @SerializedName("Date")
-    @Expose
+
     private String date;
     @SerializedName("EpochDate")
-    @Expose
+
     private Integer epochDate;
     @SerializedName("Temperature")
-    @Expose
+
     private Temperature temperature;
     @SerializedName("Day")
-    @Expose
+
     private Day day;
     @SerializedName("Night")
-    @Expose
+
     private Night night;
     @SerializedName("Sources")
-    @Expose
+
     private List<String> sources = null;
     @SerializedName("MobileLink")
-    @Expose
+
     private String mobileLink;
     @SerializedName("Link")
-    @Expose
+
     private String link;
 
     public String getDate() {

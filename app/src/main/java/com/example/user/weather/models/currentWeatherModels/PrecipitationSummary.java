@@ -1,34 +1,34 @@
 
 package com.example.user.weather.models.currentWeatherModels;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 public class PrecipitationSummary {
 
     @SerializedName("Precipitation")
-    @Expose
+
     private Precipitation precipitation;
     @SerializedName("PastHour")
-    @Expose
+
     private PastHour pastHour;
     @SerializedName("Past3Hours")
-    @Expose
+
     private Past3Hours past3Hours;
     @SerializedName("Past6Hours")
-    @Expose
+
     private Past6Hours past6Hours;
     @SerializedName("Past9Hours")
-    @Expose
+
     private Past9Hours past9Hours;
     @SerializedName("Past12Hours")
-    @Expose
+
     private Past12Hours past12Hours;
     @SerializedName("Past18Hours")
-    @Expose
+
     private Past18Hours past18Hours;
     @SerializedName("Past24Hours")
-    @Expose
+
     private Past24Hours past24Hours;
 
     public Precipitation getPrecipitation() {

@@ -1,16 +1,16 @@
 
 package com.example.user.weather.models.currentWeatherModels;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Past6HourRange {
 
     @SerializedName("Minimum")
-    @Expose
+
     private Minimum minimum;
     @SerializedName("Maximum")
-    @Expose
+
     private Maximum maximum;
 
     public Minimum getMinimum() {

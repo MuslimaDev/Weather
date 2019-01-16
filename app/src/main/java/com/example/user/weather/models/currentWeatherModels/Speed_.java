@@ -1,16 +1,16 @@
 
 package com.example.user.weather.models.currentWeatherModels;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Speed_ {
 
     @SerializedName("Metric")
-    @Expose
+
     private Metric metric;
     @SerializedName("Imperial")
-    @Expose
+
     private Imperial  imperial;
 
     public Metric  getMetric() {

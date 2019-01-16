@@ -1,19 +1,19 @@
 
 package com.example.user.weather.models.forecastModels;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Minimum {
 
     @SerializedName("Value")
-    @Expose
+
     private Double value;
     @SerializedName("Unit")
-    @Expose
+
     private String unit;
     @SerializedName("UnitType")
-    @Expose
+
     private Integer unitType;
 
     public Double getValue() {

@@ -1,16 +1,16 @@
 
 package com.example.user.weather.models.currentWeatherModels;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 public class PressureTendency {
 
     @SerializedName("LocalizedText")
-    @Expose
+
     private String localizedText;
     @SerializedName("Code")
-    @Expose
+
     private String code;
 
     public String getLocalizedText() {

@@ -3,7 +3,6 @@ package com.example.user.weather.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Adapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -32,7 +31,7 @@ public class FiveDaysForecast extends ActivityBase {
     private void getWeatherMore() {
         showProgressBar();
         Intent intent = getIntent();
-        service.getWeatherForecast(intent.getStringExtra("locationKey"), getString(R.string.apikey3), "en", true, true)
+        service.getWeatherForecast(intent.getStringExtra("locationKey"), getString(R.string.apikey1), "en", true, true)
                 .enqueue(new Callback<Forecast>() {
                     @Override
                     public void onResponse(Call<Forecast> call, Response<Forecast> response) {
@@ -45,7 +44,7 @@ public class FiveDaysForecast extends ActivityBase {
                             Log.d("getWeatherMore", adapter.toString());
 
                         } else {
-                            Toast.makeText(getApplicationContext(), "Данные не найдены ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Данные не найдены 555 ", Toast.LENGTH_LONG).show();
 
                         }
                         dismissProgressBar();

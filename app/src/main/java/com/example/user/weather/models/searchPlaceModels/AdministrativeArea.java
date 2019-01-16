@@ -1,16 +1,16 @@
 
 package com.example.user.weather.models.searchPlaceModels;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 public class AdministrativeArea {
 
     @SerializedName("ID")
-    @Expose
+
     private String iD;
     @SerializedName("LocalizedName")
-    @Expose
+
     private String localizedName;
 
     public String getID() {

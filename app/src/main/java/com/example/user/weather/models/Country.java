@@ -1,19 +1,19 @@
 
 package com.example.user.weather.models;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Country {
 
     @SerializedName("ID")
-    @Expose
+
     private String iD;
     @SerializedName("LocalizedName")
-    @Expose
+
     private String localizedName;
     @SerializedName("EnglishName")
-    @Expose
+
     private String englishName;
 
     public String getID() {

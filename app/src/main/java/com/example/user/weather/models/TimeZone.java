@@ -1,25 +1,25 @@
 
 package com.example.user.weather.models;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 public class TimeZone {
 
     @SerializedName("Code")
-    @Expose
+
     private String code;
     @SerializedName("Name")
-    @Expose
+
     private String name;
     @SerializedName("GmtOffset")
-    @Expose
+
     private Double gmtOffset;
     @SerializedName("IsDaylightSaving")
-    @Expose
+
     private Boolean isDaylightSaving;
     @SerializedName("NextOffsetChange")
-    @Expose
+
     private Object nextOffsetChange;
 
     public String getCode() {

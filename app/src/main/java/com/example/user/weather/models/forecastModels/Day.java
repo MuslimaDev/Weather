@@ -1,16 +1,16 @@
 
 package com.example.user.weather.models.forecastModels;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Day {
 
     @SerializedName("Icon")
-    @Expose
+
     private Integer icon;
     @SerializedName("IconPhrase")
-    @Expose
+
     private String iconPhrase;
 
     public Integer getIcon() {
