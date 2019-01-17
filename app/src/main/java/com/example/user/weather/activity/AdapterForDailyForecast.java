@@ -36,7 +36,6 @@ public class AdapterForDailyForecast extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
@@ -64,10 +63,8 @@ public class AdapterForDailyForecast extends ArrayAdapter {
             } else {
                 imageUrl = String.format(Constans.ICONS_URLMORE, icon);
             }
-
             Picasso.get().load(imageUrl).into(holder.image);
         }
         return convertView;
     }
-
 }

@@ -37,15 +37,12 @@ public class FiveDaysForecast extends ActivityBase {
                     public void onResponse(Call<Forecast> call, Response<Forecast> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             Forecast model = response.body();
-
                             AdapterForDailyForecast adapter = new AdapterForDailyForecast(getApplicationContext(),
                                     model.getDailyForecasts());
                             listView.setAdapter(adapter);
                             Log.d("getWeatherMore", adapter.toString());
-
                         } else {
                             Toast.makeText(getApplicationContext(), "Данные не найдены 555 ", Toast.LENGTH_LONG).show();
-
                         }
                         dismissProgressBar();
                     }

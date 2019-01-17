@@ -15,7 +15,6 @@ public abstract class ActivityBase extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     protected void showProgressBar() {
@@ -29,9 +28,7 @@ public abstract class ActivityBase extends AppCompatActivity {
     protected void dismissProgressBar() {
         if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
-
         }
         dialog = null;
     }
-
 }

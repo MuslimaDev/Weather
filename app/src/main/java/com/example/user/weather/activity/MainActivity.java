@@ -81,12 +81,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-
             case R.id.item:
                 Intent intent = new Intent(this, SearchPlaceActivity.class);
                 startActivityForResult(intent, 0);
                 break;
-
         }
         return super.onOptionsItemSelected(item);
     }

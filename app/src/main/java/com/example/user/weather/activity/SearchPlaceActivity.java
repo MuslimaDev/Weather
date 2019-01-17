@@ -39,7 +39,6 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
         button.setOnClickListener(this);
     }
 
-
     private void forSearchPlace() {
         Log.d("SearchPlace" , "openMethod");
         showProgressBar();
