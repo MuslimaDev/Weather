@@ -7,13 +7,12 @@ import com.google.gson.annotations.SerializedName;
 public class Imperial {
 
     @SerializedName("Value")
-
     private Double value;
+
     @SerializedName("Unit")
-
     private String unit;
-    @SerializedName("UnitType")
 
+    @SerializedName("UnitType")
     private Integer unitType;
 
     public Double getValue() {

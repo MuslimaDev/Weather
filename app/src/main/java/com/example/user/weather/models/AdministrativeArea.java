@@ -5,27 +5,25 @@ package com.example.user.weather.models;
 import com.google.gson.annotations.SerializedName;
 
 public class AdministrativeArea {
-
     @SerializedName("ID")
-
     private String iD;
+
     @SerializedName("LocalizedName")
-
     private String localizedName;
+
     @SerializedName("EnglishName")
-
     private String englishName;
+
     @SerializedName("Level")
-
     private Integer level;
+
     @SerializedName("LocalizedType")
-
     private String localizedType;
+
     @SerializedName("EnglishType")
-
     private String englishType;
-    @SerializedName("CountryID")
 
+    @SerializedName("CountryID")
     private String countryID;
 
     public String getID() {

@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -27,7 +26,6 @@ import com.example.user.weather.utils.Constans;
 import com.example.user.weather.utils.PermissionUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -122,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                         if (response.isSuccessful() && response.body() != null) {
                             temperature.setText(currentModel.getTemperature().getMetric().getValue().toString() + "°" + currentModel.getTemperature().getMetric().getUnit());
                             feelsLike.setText(currentModel.getRealFeelTemperature().getMetric().getValue().toString() + "°" + currentModel.getRealFeelTemperature().getMetric().getUnit());
-                            wind.setText(currentModel.getWind().getSpeed().getMetric().getValue().toString() + " " +  currentModel.getWind().getSpeed().getMetric().getUnit());
+                            wind.setText(currentModel.getWind().getSpeed().getMetric().getValue().toString() + " " + currentModel.getWind().getSpeed().getMetric().getUnit());
                             visibility.setText(currentModel.getVisibility().getMetric().getValue().toString() + " " + currentModel.getVisibility().getMetric().getUnit());
                             int icon = currentModel.getWeatherIcon();
                             String imageUrl;
@@ -163,19 +161,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
             super.onLocationResult(locationResult);
         }
     };
-
-    @SuppressLint("MissingPermission")
-    public void startLocationUpdates() {
-        int INTERVAL_UPDATES = 5000;
-        int MINIMUM_INTERVAL_UPDATES = 1000;
-
-        LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setInterval(INTERVAL_UPDATES);
-        locationRequest.setFastestInterval(MINIMUM_INTERVAL_UPDATES);
-        mFusedLocationClient.requestLocationUpdates(locationRequest, mLocationCallback,
-                Looper.myLooper());
-    }
 
     @SuppressLint("MissingPermission")
     public void getCurrentLocation() {

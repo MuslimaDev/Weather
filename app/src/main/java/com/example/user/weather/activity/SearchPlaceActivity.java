@@ -10,17 +10,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import com.example.user.weather.R;
 import com.example.user.weather.Weather;
 import com.example.user.weather.models.searchPlaceModels.SearchPlaceModel;
 import com.example.user.weather.network.RetrofitService;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchPlaceActivity extends ActivityBase implements View.OnClickListener, AdapterView.OnItemClickListener{
+public class SearchPlaceActivity extends ActivityBase implements View.OnClickListener, AdapterView.OnItemClickListener {
     private RetrofitService service;
     private EditText editText;
     private ListView listView;
@@ -40,7 +43,7 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
     }
 
     private void forSearchPlace() {
-        Log.d("SearchPlace" , "openMethod");
+        Log.d("SearchPlace", "openMethod");
         showProgressBar();
         service.searchingPlace(editText.getText().toString(), getString(R.string.apikey1), "en")
                 .enqueue(new Callback<List<SearchPlaceModel>>() {
@@ -48,7 +51,7 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
                     public void onResponse(Call<List<SearchPlaceModel>> call, Response<List<SearchPlaceModel>> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             searchPlaceModel = response.body();
-                            Log.d("SearchPlace Model" , searchPlaceModel.toString());
+                            Log.d("SearchPlace Model", searchPlaceModel.toString());
                             List<String> arrayList = new ArrayList<>();
                             dismissProgressBar();
                             for (int i = 0; i < searchPlaceModel.size(); i++) {
@@ -80,7 +83,8 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (searchPlaceModel.get(position).getKey()==null&& searchPlaceModel.get(position).getLocalizedName()==null)return;
+        if (searchPlaceModel.get(position).getKey() == null && searchPlaceModel.get(position).getLocalizedName() == null)
+            return;
         Intent intent = new Intent();
 
         intent.putExtra("locationKey", searchPlaceModel.get(position).getKey());

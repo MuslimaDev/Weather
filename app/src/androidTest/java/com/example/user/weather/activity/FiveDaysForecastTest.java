@@ -18,9 +18,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -30,13 +28,14 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class MainActivityTest {
+public class FiveDaysForecastTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void mainActivityTest() throws Exception {
+    public void fiveDaysForecastTest() throws Exception {
+
         Thread.sleep(1000);
 
         ViewInteraction appCompatButton = onView(allOf(withId(R.id.button), withText("Next 5 days"), isDisplayed()));
@@ -45,9 +44,5 @@ public class MainActivityTest {
         Thread.sleep(1000);
 
         pressBack();
-
-        Thread.sleep(1000);
-
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
     }
 }

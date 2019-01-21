@@ -7,19 +7,18 @@ import com.google.gson.annotations.SerializedName;
 public class TimeZone {
 
     @SerializedName("Code")
-
     private String code;
+
     @SerializedName("Name")
-
     private String name;
+
     @SerializedName("GmtOffset")
-
     private Double gmtOffset;
+
     @SerializedName("IsDaylightSaving")
-
     private Boolean isDaylightSaving;
-    @SerializedName("NextOffsetChange")
 
+    @SerializedName("NextOffsetChange")
     private Object nextOffsetChange;
 
     public String getCode() {

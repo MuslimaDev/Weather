@@ -7,10 +7,9 @@ import com.google.gson.annotations.SerializedName;
 public class Elevation {
 
     @SerializedName("Metric")
-
     private Metric metric;
-    @SerializedName("Imperial")
 
+    @SerializedName("Imperial")
     private Imperial imperial;
 
     public Metric getMetric() {

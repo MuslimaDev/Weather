@@ -1,13 +1,12 @@
 package com.example.user.weather;
 
 import android.app.Application;
-import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.example.user.weather.network.RetrofitClient;
 import com.example.user.weather.network.RetrofitService;
 
-public class Weather extends MultiDexApplication {
+public class Weather extends Application {
     private RetrofitService service;
 
     @Override

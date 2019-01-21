@@ -9,49 +9,48 @@ import java.util.List;
 public class Example {
 
     @SerializedName("Version")
-
     private Integer version;
+
     @SerializedName("Key")
-
     private String key;
+
     @SerializedName("Type")
-
     private String type;
+
     @SerializedName("Rank")
-
     private Integer rank;
+
     @SerializedName("LocalizedName")
-
     private String localizedName;
+
     @SerializedName("EnglishName")
-
     private String englishName;
+
     @SerializedName("PrimaryPostalCode")
-
     private String primaryPostalCode;
+
     @SerializedName("Region")
-
     private Region region;
+
     @SerializedName("Country")
-
     private Country country;
+
     @SerializedName("AdministrativeArea")
-
     private AdministrativeArea administrativeArea;
+
     @SerializedName("TimeZone")
-
     private TimeZone timeZone;
+
     @SerializedName("GeoPosition")
-
     private GeoPosition geoPosition;
+
     @SerializedName("IsAlias")
-
     private Boolean isAlias;
+
     @SerializedName("SupplementalAdminAreas")
-
     private List<Object> supplementalAdminAreas = null;
-    @SerializedName("DataSets")
 
+    @SerializedName("DataSets")
     private List<Object> dataSets = null;
 
     public Integer getVersion() {

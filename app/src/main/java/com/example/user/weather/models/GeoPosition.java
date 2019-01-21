@@ -7,13 +7,12 @@ import com.google.gson.annotations.SerializedName;
 public class GeoPosition {
 
     @SerializedName("Latitude")
-
     private Double latitude;
+
     @SerializedName("Longitude")
-
     private Double longitude;
-    @SerializedName("Elevation")
 
+    @SerializedName("Elevation")
     private Elevation elevation;
 
     public Double getLatitude() {

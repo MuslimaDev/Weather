@@ -6,91 +6,90 @@ import com.google.gson.annotations.SerializedName;
 public class CurrentModel {
 
     @SerializedName("LocalObservationDateTime")
-    
     private String localObservationDateTime;
+
     @SerializedName("EpochTime")
-    
     private Integer epochTime;
+
     @SerializedName("WeatherText")
-    
     private String weatherText;
+
     @SerializedName("WeatherIcon")
-    
     private Integer weatherIcon;
+
     @SerializedName("IsDayTime")
-    
     private Boolean isDayTime;
+
     @SerializedName("Temperature")
-    
     private Temperature temperature;
+
     @SerializedName("RealFeelTemperature")
-    
     private RealFeelTemperature realFeelTemperature;
+
     @SerializedName("RealFeelTemperatureShade")
-    
     private RealFeelTemperatureShade realFeelTemperatureShade;
+
     @SerializedName("RelativeHumidity")
-    
     private Integer relativeHumidity;
+
     @SerializedName("DewPoint")
-    
     private DewPoint dewPoint;
+
     @SerializedName("Wind")
-    
     private Wind wind;
+
     @SerializedName("WindGust")
-    
     private WindGust windGust;
+
     @SerializedName("UVIndex")
-    
     private Integer uVIndex;
+
     @SerializedName("UVIndexText")
-    
     private String uVIndexText;
+
     @SerializedName("Visibility")
-    
     private Visibility visibility;
+
     @SerializedName("ObstructionsToVisibility")
-    
     private String obstructionsToVisibility;
+
     @SerializedName("CloudCover")
-    
     private Integer cloudCover;
+
     @SerializedName("Ceiling")
-    
     private Ceiling ceiling;
+
     @SerializedName("Pressure")
-    
     private Pressure pressure;
+
     @SerializedName("PressureTendency")
-    
     private PressureTendency pressureTendency;
+
     @SerializedName("Past24HourTemperatureDeparture")
-    
     private Past24HourTemperatureDeparture past24HourTemperatureDeparture;
+
     @SerializedName("ApparentTemperature")
-    
     private ApparentTemperature apparentTemperature;
+
     @SerializedName("WindChillTemperature")
-    
     private WindChillTemperature windChillTemperature;
+
     @SerializedName("WetBulbTemperature")
-    
     private WetBulbTemperature wetBulbTemperature;
+
     @SerializedName("Precip1hr")
-    
     private Precip1hr precip1hr;
+
     @SerializedName("PrecipitationSummary")
-    
     private PrecipitationSummary precipitationSummary;
+
     @SerializedName("TemperatureSummary")
-    
     private TemperatureSummary temperatureSummary;
+
     @SerializedName("MobileLink")
-    
     private String mobileLink;
+
     @SerializedName("Link")
-    
     private String link;
 
     public String getLocalObservationDateTime() {

@@ -7,13 +7,12 @@ import com.google.gson.annotations.SerializedName;
 public class Direction {
 
     @SerializedName("Degrees")
-
     private Integer degrees;
+
     @SerializedName("Localized")
-
     private String localized;
-    @SerializedName("English")
 
+    @SerializedName("English")
     private String english;
 
     public Integer getDegrees() {
