@@ -7,25 +7,24 @@ import com.google.gson.annotations.SerializedName;
 public class SearchPlaceModel {
 
     @SerializedName("Version")
-
     private Integer version;
+
     @SerializedName("Key")
-
     private String key;
+
     @SerializedName("Type")
-
     private String type;
+
     @SerializedName("Rank")
-
     private Integer rank;
+
     @SerializedName("LocalizedName")
-
     private String localizedName;
+
     @SerializedName("Country")
-
     private Country country;
-    @SerializedName("AdministrativeArea")
 
+    @SerializedName("AdministrativeArea")
     private AdministrativeArea administrativeArea;
 
     public Integer getVersion() {

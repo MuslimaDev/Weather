@@ -1,4 +1,4 @@
-package com.example.user.weather.activity;
+package com.example.user.weather.network;
 
 import android.util.Log;
 

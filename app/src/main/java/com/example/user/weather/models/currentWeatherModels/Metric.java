@@ -12,16 +12,10 @@ public class Metric {
     @SerializedName("Unit")
     private String unit;
 
-    @SerializedName("UnitType")
-    private Integer unitType;
 
-    public Double getValue() {
-        return value;
-    }
+    public Double getValue() { return value; }
 
-    public void setValue(Double value) {
-        this.value = value;
-    }
+    public void setValue(Double value) { this.value = value; }
 
     public String getUnit() {
         return unit;
@@ -29,14 +23,6 @@ public class Metric {
 
     public void setUnit(String unit) {
         this.unit = unit;
-    }
-
-    public Integer getUnitType() {
-        return unitType;
-    }
-
-    public void setUnitType(Integer unitType) {
-        this.unitType = unitType;
     }
 
 }

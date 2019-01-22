@@ -23,6 +23,7 @@ import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.replaceText;
@@ -36,34 +37,46 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class SearchActivity {
+public class SearchPlaceActivityTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void searchActivity() throws Exception {
-        Thread.sleep(1000);
+    public void searchPlaceActivityTest() throws Exception{
+            Thread.sleep(1000);
 
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+
         ViewInteraction appCompatTextView = onView(allOf(withId(R.id.title), withText("Searching city"), isDisplayed()));
         appCompatTextView.perform(click());
 
-        Thread.sleep(1000);
+            Thread.sleep(1000);
 
         ViewInteraction appCompatEditText = onView(allOf(withId(R.id.textLine), isDisplayed()));
-        appCompatEditText.perform(replaceText("test"), closeSoftKeyboard());
+        appCompatEditText.perform(click());
+
+        ViewInteraction appCompatEditText2 = onView(allOf(withId(R.id.textLine), isDisplayed()));
+        appCompatEditText2.perform(replaceText("Rome"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton = onView(allOf(withId(R.id.searchButton), withText("SEARCH"), isDisplayed()));
         appCompatButton.perform(click());
 
         DataInteraction textView = onData(anything())
-                .inAdapterView(allOf(withId(R.id.list_town),
-                        childAtPosition(
-                                withClassName(is("android.widget.LinearLayout")),
+                .inAdapterView(allOf(withId(R.id.list_town), childAtPosition(
+                        withClassName(is("android.widget.LinearLayout")),
                                 2)))
                 .atPosition(0);
         textView.perform(click());
+
+            Thread.sleep(1000);
+
+        ViewInteraction appCompatButton2 = onView(allOf(withId(R.id.button), withText("Next 5 days"), isDisplayed()));
+        appCompatButton2.perform(click());
+
+            Thread.sleep(1000);
+
+        pressBack();
     }
 
     private static Matcher<View> childAtPosition(

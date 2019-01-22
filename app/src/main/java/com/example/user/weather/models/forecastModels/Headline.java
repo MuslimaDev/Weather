@@ -1,37 +1,35 @@
 
 package com.example.user.weather.models.forecastModels;
 
-
 import com.google.gson.annotations.SerializedName;
 
 public class Headline {
 
     @SerializedName("EffectiveDate")
-
     private String effectiveDate;
+
     @SerializedName("EffectiveEpochDate")
-
     private Integer effectiveEpochDate;
+
     @SerializedName("Severity")
-
     private Integer severity;
+
     @SerializedName("Text")
-
     private String text;
+
     @SerializedName("Category")
-
     private String category;
+
     @SerializedName("EndDate")
-
     private String endDate;
+
     @SerializedName("EndEpochDate")
-
     private Integer endEpochDate;
+
     @SerializedName("MobileLink")
-
     private String mobileLink;
-    @SerializedName("Link")
 
+    @SerializedName("Link")
     private String link;
 
     public String getEffectiveDate() {

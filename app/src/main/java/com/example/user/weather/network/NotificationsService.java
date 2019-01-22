@@ -1,4 +1,4 @@
-package com.example.user.weather.activity;
+package com.example.user.weather.network;
 
 
 import android.app.NotificationManager;
@@ -8,6 +8,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.example.user.weather.R;
+import com.example.user.weather.activity.MainActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 

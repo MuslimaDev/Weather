@@ -5,15 +5,10 @@ import android.support.test.espresso.ViewInteraction;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-
 import com.example.user.weather.R;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
+import junit.framework.Assert;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,5 +39,11 @@ public class FiveDaysForecastTest {
         Thread.sleep(1000);
 
         pressBack();
+    }
+    @Test
+    public void isNotNull(){
+        Assert.assertNotNull(R.id.date);
+        Assert.assertNotNull(R.id.minimumTemp);
+        Assert.assertNotNull(R.id.maximumTemp);
     }
 }

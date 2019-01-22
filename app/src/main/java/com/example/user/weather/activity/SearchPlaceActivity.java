@@ -45,7 +45,7 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
     private void forSearchPlace() {
         Log.d("SearchPlace", "openMethod");
         showProgressBar();
-        service.searchingPlace(editText.getText().toString(), getString(R.string.apikey1), "en")
+        service.searchingPlace(editText.getText().toString(), getString(R.string.apikey3), "en")
                 .enqueue(new Callback<List<SearchPlaceModel>>() {
                     @Override
                     public void onResponse(Call<List<SearchPlaceModel>> call, Response<List<SearchPlaceModel>> response) {
@@ -61,10 +61,10 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
                             ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, arrayList);
                             listView.setAdapter(adapter);
                         } else {
-                            Toast.makeText(getApplicationContext(), "Сервер не отвечает", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Server is not responding", Toast.LENGTH_LONG).show();
                         }
                         if (searchPlaceModel.size() == 0 && response.body() == null) {
-                            Toast.makeText(getApplicationContext(), "Не найдено", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Not found", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -88,7 +88,7 @@ public class SearchPlaceActivity extends ActivityBase implements View.OnClickLis
         Intent intent = new Intent();
 
         intent.putExtra("locationKey", searchPlaceModel.get(position).getKey());
-        intent.putExtra("CityName", searchPlaceModel.get(position).getLocalizedName());
+        intent.putExtra("cityName", searchPlaceModel.get(position).getLocalizedName());
         setResult(RESULT_OK, intent);
         finish();
     }

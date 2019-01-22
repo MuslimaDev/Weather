@@ -7,10 +7,9 @@ import com.google.gson.annotations.SerializedName;
 public class Temperature {
 
     @SerializedName("Minimum")
-
     private Minimum minimum;
-    @SerializedName("Maximum")
 
+    @SerializedName("Maximum")
     private Maximum maximum;
 
     public Minimum getMinimum() {

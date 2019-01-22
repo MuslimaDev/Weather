@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     }
 
     public void getLocationForWeather(String lat, String lng) {
-        service.getCurrentLocation(String.format("%1s,%2s", lat, lng), getString(R.string.apikey1), "en")
+        service.getCurrentLocation(String.format("%1s,%2s", lat, lng), getString(R.string.apikey3), "en")
                 .enqueue(new Callback<Example>() {
                     @Override
                     public void onResponse(Call<Example> call, Response<Example> response) {
@@ -104,13 +104,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
                     @Override
                     public void onFailure(Call<Example> call, Throwable throwable) {
-                        Toast.makeText(MainActivity.this, "Подключение к интернету отсутсвует 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "No internet connection", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     public void getCurrentWeather(String locationKey) {
-        service.getCurrentWeather(locationKey, getString(R.string.apikey1), "en", true).
+        service.getCurrentWeather(locationKey, getString(R.string.apikey3), "en", true).
                 enqueue(new Callback<List<CurrentModel>>() {
                     @Override
                     public void onResponse(Call<List<CurrentModel>> call, Response<List<CurrentModel>> response) {
@@ -131,13 +131,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                             }
                             Picasso.get().load(imageUrl).into(imageView);
                         } else {
-                            Toast.makeText(getApplicationContext(), "Сервер не отвечает", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Server is not responding", Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<List<CurrentModel>> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Подключения к интернету отсутсвует 2", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "No internet connection", Toast.LENGTH_LONG).show();
                     }
                 });
     }
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
             return;
         }
         locationKey = data.getStringExtra("locationKey");
-        currentLocation.setText(data.getStringExtra("CityName"));
+        currentLocation.setText(data.getStringExtra("cityName"));
         getCurrentWeather(data.getStringExtra("locationKey"));
     }
 

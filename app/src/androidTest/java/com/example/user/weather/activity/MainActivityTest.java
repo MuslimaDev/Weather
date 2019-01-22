@@ -5,15 +5,11 @@ import android.support.test.espresso.ViewInteraction;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 
 import com.example.user.weather.R;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
+import junit.framework.Assert;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,5 +45,14 @@ public class MainActivityTest {
         Thread.sleep(1000);
 
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+    }
+
+    @Test
+    public void isNotNull(){
+        Assert.assertNotNull(R.id.currentlocation);
+        Assert.assertNotNull(R.id.temperature);
+        Assert.assertNotNull(R.id.feelsLike);
+        Assert.assertNotNull(R.id.wind);
+        Assert.assertNotNull(R.id.visibility);
     }
 }

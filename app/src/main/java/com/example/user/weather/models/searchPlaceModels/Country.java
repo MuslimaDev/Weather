@@ -7,10 +7,9 @@ import com.google.gson.annotations.SerializedName;
 public class Country {
 
     @SerializedName("ID")
-
     private String iD;
-    @SerializedName("LocalizedName")
 
+    @SerializedName("LocalizedName")
     private String localizedName;
 
     public String getID() {

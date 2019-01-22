@@ -7,14 +7,10 @@ import com.google.gson.annotations.SerializedName;
 public class Maximum {
 
     @SerializedName("Value")
-
     private Double value;
+
     @SerializedName("Unit")
-
     private String unit;
-    @SerializedName("UnitType")
-
-    private Integer unitType;
 
     public Double getValue() {
         return value;
@@ -28,16 +24,5 @@ public class Maximum {
         return unit;
     }
 
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    public Integer getUnitType() {
-        return unitType;
-    }
-
-    public void setUnitType(Integer unitType) {
-        this.unitType = unitType;
-    }
-
+    public void setUnit(String unit) { this.unit = unit; }
 }

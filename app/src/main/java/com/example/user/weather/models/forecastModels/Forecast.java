@@ -1,18 +1,15 @@
 
 package com.example.user.weather.models.forecastModels;
 
-
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
+import com.google.gson.annotations.SerializedName;
 
 public class Forecast {
 
     @SerializedName("Headline")
-
     private Headline headline;
-    @SerializedName("DailyForecasts")
 
+    @SerializedName("DailyForecasts")
     private List<DailyForecast> dailyForecasts = null;
 
     public Headline getHeadline() {
