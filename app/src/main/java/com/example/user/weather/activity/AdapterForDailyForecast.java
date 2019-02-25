@@ -16,7 +16,11 @@ import com.example.user.weather.models.forecastModels.DailyForecast;
 import com.example.user.weather.utils.Constans;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class AdapterForDailyForecast extends ArrayAdapter {
     Context context;
