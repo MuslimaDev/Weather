@@ -28,7 +28,11 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -50,6 +54,22 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+
+                        String token = task.getResult().getToken();
+                        String msg = getString(R.string.fcm_token, token);
+                        Log.d("firebase", msg);
+
+                    }
+                });
+
         currentLocation = findViewById(R.id.currentlocation);
         temperature = findViewById(R.id.temperature);
         feelsLike = findViewById(R.id.feelsLike);

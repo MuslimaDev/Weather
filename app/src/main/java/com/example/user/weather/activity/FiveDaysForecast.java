@@ -16,7 +16,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FiveDaysForecast extends ActivityBase {
-    ListView listView;
+    private ListView listView;
     private RetrofitService service;
 
     @Override

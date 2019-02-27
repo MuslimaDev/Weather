@@ -17,14 +17,15 @@ import com.example.user.weather.utils.Constans;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class AdapterForDailyForecast extends ArrayAdapter {
-    Context context;
-    List<DailyForecast> list;
+    private Context context;
+    private List<DailyForecast> list;
 
     private class ViewHolder {
         TextView date, maximum, minimum;
