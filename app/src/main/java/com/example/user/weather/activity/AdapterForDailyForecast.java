@@ -57,7 +57,7 @@ public class AdapterForDailyForecast extends ArrayAdapter {
         DailyForecast model = (DailyForecast) getItem(position);
 
         if (model != null) {
-            holder.date.setText(model.getDate());
+            holder.date.setText(model.getDate() != null ? getFormattedDate(model.getDate()) : "");
             holder.maximum.setText(model.getTemperature().getMaximum().getValue().toString() + "°" + model.getTemperature().getMaximum().getUnit());
             holder.minimum.setText(model.getTemperature().getMinimum().getValue().toString() + "°" + model.getTemperature().getMinimum().getUnit());
             int icon = model.getDay().getIcon();
@@ -72,4 +72,25 @@ public class AdapterForDailyForecast extends ArrayAdapter {
         }
         return convertView;
     }
+
+    private static Date getDate(String stringDate) {
+        if (stringDate == null) {
+            throw new IllegalArgumentException("Parsing error");
+        }
+        Locale locale = new Locale("en");
+        stringDate = stringDate.substring(0, 20);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", locale);
+        try {
+            return formatter.parse(stringDate);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Parsing error");
+        }
+    }
+
+    public static String getFormattedDate(String resourceDate) throws IllegalArgumentException {
+        SimpleDateFormat formatter = new SimpleDateFormat("MMMM d, EEEE", new Locale("en"));
+        Date date = getDate(resourceDate);
+        return formatter.format(date);
+    }
+
 }

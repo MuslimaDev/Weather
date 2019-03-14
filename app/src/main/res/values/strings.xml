@@ -2,8 +2,8 @@
     <string name="app_name">Weather</string>
     <string name="apikey1">z8XWTFdauWpNFqAyHYlyHTRZNgvBF9X3</string>
     <string name="apikey2">a3iSNVGQgI634YHILxqkryh1ttBMBXwA</string>
-    <string name="apikey3">RemBTh8GOVYBEwh1CL1LuZsZAGYACjTI</string>
-    <string name="apikey4">yay6XkSv9MfaJ4WSapT28dxamAe6Iqs1</string>
+    <string name="apikey3">yay6XkSv9MfaJ4WSapT28dxamAe6Iqs1</string>
+    <string name="apikey4">RemBTh8GOVYBEwh1CL1LuZsZAGYACjTI</string>
     <string name="title_activity_five_days_forecast">FiveDaysForecastActivity</string>
     <string name="fcm_token">FCM Token: %s</string>
 </resources>
