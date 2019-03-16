@@ -4,6 +4,16 @@
     <string name="apikey2">a3iSNVGQgI634YHILxqkryh1ttBMBXwA</string>
     <string name="apikey3">yay6XkSv9MfaJ4WSapT28dxamAe6Iqs1</string>
     <string name="apikey4">RemBTh8GOVYBEwh1CL1LuZsZAGYACjTI</string>
+
     <string name="title_activity_five_days_forecast">FiveDaysForecastActivity</string>
     <string name="fcm_token">FCM Token: %s</string>
+
+    <string name="feelsLike">Feels like</string>
+    <string name="wind">Wind</string>
+    <string name="visibility">Visibility</string>
+    <string name="nextFiveDays">next 5 days</string>
+    <string name="maximum">maximum</string>
+    <string name="minimum">minimum</string>
+    <string name="searchButton">search</string>
+    <string name="editTextValue">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLOMNOPQRSTUVWXYZ</string>
 </resources>

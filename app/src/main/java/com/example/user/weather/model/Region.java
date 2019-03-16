@@ -1,10 +1,10 @@
 
-package com.example.user.weather.models;
+package com.example.user.weather.model;
 
 
 import com.google.gson.annotations.SerializedName;
 
-public class Country {
+public class Region {
 
     @SerializedName("ID")
     private String iD;

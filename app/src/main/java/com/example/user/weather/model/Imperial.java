@@ -1,10 +1,9 @@
 
-package com.example.user.weather.models.forecastModels;
-
+package com.example.user.weather.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Minimum {
+public class Imperial {
 
     @SerializedName("Value")
     private Double value;

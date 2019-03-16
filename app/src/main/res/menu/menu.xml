@@ -5,5 +5,4 @@
         android:id="@+id/item"
         android:title="Searching city" />
 
-
 </menu>

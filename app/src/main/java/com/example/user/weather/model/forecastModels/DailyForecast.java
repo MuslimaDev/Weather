@@ -1,10 +1,8 @@
 
-package com.example.user.weather.models.forecastModels;
+package com.example.user.weather.model.forecastModels;
 
 
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 public class DailyForecast {
 

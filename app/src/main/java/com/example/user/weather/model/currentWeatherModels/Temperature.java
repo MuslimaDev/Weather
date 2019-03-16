@@ -1,14 +1,13 @@
 
-package com.example.user.weather.models.currentWeatherModels;
+package com.example.user.weather.model.currentWeatherModels;
 
 
 import com.google.gson.annotations.SerializedName;
 
-public class RealFeelTemperature {
+public class Temperature {
 
     @SerializedName("Metric")
     private Metric metric;
-
 
     public Metric getMetric() {
         return metric;
@@ -17,5 +16,4 @@ public class RealFeelTemperature {
     public void setMetric(Metric metric) {
         this.metric = metric;
     }
-
 }

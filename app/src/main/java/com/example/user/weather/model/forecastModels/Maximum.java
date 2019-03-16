@@ -1,19 +1,16 @@
 
-package com.example.user.weather.models;
+package com.example.user.weather.model.forecastModels;
 
 
 import com.google.gson.annotations.SerializedName;
 
-public class Metric {
+public class Maximum {
 
     @SerializedName("Value")
     private Double value;
 
     @SerializedName("Unit")
     private String unit;
-
-    @SerializedName("UnitType")
-    private Integer unitType;
 
     public Double getValue() {
         return value;
@@ -27,16 +24,5 @@ public class Metric {
         return unit;
     }
 
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    public Integer getUnitType() {
-        return unitType;
-    }
-
-    public void setUnitType(Integer unitType) {
-        this.unitType = unitType;
-    }
-
+    public void setUnit(String unit) { this.unit = unit; }
 }

@@ -1,19 +1,16 @@
 
-package com.example.user.weather.models;
+package com.example.user.weather.model.searchPlaceModels;
 
 
 import com.google.gson.annotations.SerializedName;
 
-public class Region {
+public class Country {
 
     @SerializedName("ID")
     private String iD;
 
     @SerializedName("LocalizedName")
     private String localizedName;
-
-    @SerializedName("EnglishName")
-    private String englishName;
 
     public String getID() {
         return iD;
@@ -29,14 +26,6 @@ public class Region {
 
     public void setLocalizedName(String localizedName) {
         this.localizedName = localizedName;
-    }
-
-    public String getEnglishName() {
-        return englishName;
-    }
-
-    public void setEnglishName(String englishName) {
-        this.englishName = englishName;
     }
 
 }

@@ -1,6 +1,5 @@
 package com.example.user.weather.network;
 
-
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;

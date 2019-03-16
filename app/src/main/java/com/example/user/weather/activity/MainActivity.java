@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +19,8 @@ import android.widget.Toast;
 
 import com.example.user.weather.R;
 import com.example.user.weather.Weather;
-import com.example.user.weather.models.Example;
-import com.example.user.weather.models.currentWeatherModels.CurrentModel;
+import com.example.user.weather.model.Example;
+import com.example.user.weather.model.currentWeatherModels.CurrentModel;
 import com.example.user.weather.network.RetrofitService;
 import com.example.user.weather.utils.Constans;
 import com.example.user.weather.utils.PermissionUtils;
@@ -36,6 +35,8 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.squareup.picasso.Picasso;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -43,14 +44,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements LocationListener, View.OnClickListener {
-    private FusedLocationProviderClient mFusedLocationClient;
     private TextView currentLocation, temperature, feelsLike, wind, visibility;
     private ImageView imageView;
     private RetrofitService service;
     private Example model;
     private String locationKey;
     private CurrentModel currentModel;
-    private Button button;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,20 +66,21 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
                         String token = task.getResult().getToken();
                         String msg = getString(R.string.fcm_token, token);
-                        Log.d("firebase", msg);
-
                     }
                 });
 
-        currentLocation = findViewById(R.id.currentlocation);
+        currentLocation = findViewById(R.id.currentLocation);
         temperature = findViewById(R.id.temperature);
         feelsLike = findViewById(R.id.feelsLike);
         wind = findViewById(R.id.wind);
         visibility = findViewById(R.id.visibility);
         imageView = findViewById(R.id.weatherIcon);
-        service = ((Weather) getApplication()).getService();
-        button = findViewById(R.id.button);
+
+        Button button = findViewById(R.id.button);
         button.setOnClickListener(this);
+
+        service = ((Weather) getApplication()).getService();
+
         if (PermissionUtils.Companion.isLocationEnable(this)) {
             getCurrentLocation();
         }
@@ -100,12 +100,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item:
-                Intent intent = new Intent(this, SearchPlaceActivity.class);
-                startActivityForResult(intent, 0);
-                break;
-        }
+        Intent intent = new Intent(this, SearchPlaceActivity.class);
+        startActivityForResult(intent, 0);
         return super.onOptionsItemSelected(item);
     }
 
@@ -113,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         service.getCurrentLocation(String.format("%1s,%2s", lat, lng), getString(R.string.apikey3), "en")
                 .enqueue(new Callback<Example>() {
                     @Override
-                    public void onResponse(Call<Example> call, Response<Example> response) {
+                    public void onResponse(@NotNull Call<Example> call, @NotNull Response<Example> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             model = response.body();
                             currentLocation.setText(model.getLocalizedName());
@@ -125,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                     }
 
                     @Override
-                    public void onFailure(Call<Example> call, Throwable throwable) {
+                    public void onFailure(@NotNull Call<Example> call, @NotNull Throwable throwable) {
                         Toast.makeText(MainActivity.this, "No internet connection", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -134,16 +130,20 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     public void getCurrentWeather(String locationKey) {
         service.getCurrentWeather(locationKey, getString(R.string.apikey3), "en", true).
                 enqueue(new Callback<List<CurrentModel>>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void onResponse(Call<List<CurrentModel>> call, Response<List<CurrentModel>> response) {
-                        Log.d("Response ", response.toString());
+                    public void onResponse(@NotNull Call<List<CurrentModel>> call, @NotNull Response<List<CurrentModel>> response) {
                         List<CurrentModel> currentWeather = response.body();
-                        currentModel = currentWeather.get(0);
+                        if (currentWeather != null) {
+                            currentModel = currentWeather.get(0);
+                        }
+
                         if (response.isSuccessful() && response.body() != null) {
                             temperature.setText(currentModel.getTemperature().getMetric().getValue().toString() + "°" + currentModel.getTemperature().getMetric().getUnit());
                             feelsLike.setText(currentModel.getRealFeelTemperature().getMetric().getValue().toString() + "°" + currentModel.getRealFeelTemperature().getMetric().getUnit());
                             wind.setText(currentModel.getWind().getSpeed().getMetric().getValue().toString() + " " + currentModel.getWind().getSpeed().getMetric().getUnit());
                             visibility.setText(currentModel.getVisibility().getMetric().getValue().toString() + " " + currentModel.getVisibility().getMetric().getUnit());
+
                             int icon = currentModel.getWeatherIcon();
                             String imageUrl;
                             if (icon < 10) {
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                     }
 
                     @Override
-                    public void onFailure(Call<List<CurrentModel>> call, Throwable t) {
+                    public void onFailure(@NotNull Call<List<CurrentModel>> call, @NotNull Throwable t) {
                         Toast.makeText(getApplicationContext(), "No internet connection", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
     @SuppressLint("MissingPermission")
     public void getCurrentLocation() {
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        FusedLocationProviderClient mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         mFusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
 
             public void onSuccess(Location location) {

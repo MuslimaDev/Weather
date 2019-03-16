@@ -1,5 +1,5 @@
 
-package com.example.user.weather.models.searchPlaceModels;
+package com.example.user.weather.model.searchPlaceModels;
 
 
 import com.google.gson.annotations.SerializedName;

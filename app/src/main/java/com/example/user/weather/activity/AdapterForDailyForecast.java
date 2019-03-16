@@ -1,9 +1,9 @@
 package com.example.user.weather.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.weather.R;
-import com.example.user.weather.models.forecastModels.DailyForecast;
+import com.example.user.weather.model.forecastModels.DailyForecast;
 import com.example.user.weather.utils.Constans;
 import com.squareup.picasso.Picasso;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,19 +24,18 @@ import java.util.Locale;
 
 public class AdapterForDailyForecast extends ArrayAdapter {
     private Context context;
-    private List<DailyForecast> list;
 
     private class ViewHolder {
         TextView date, maximum, minimum;
-        ImageView image;
+        ImageView weatherIcon;
     }
 
-    public AdapterForDailyForecast(@NonNull Context context, List<DailyForecast> list) {
+    AdapterForDailyForecast(@NonNull Context context, List<DailyForecast> list) {
         super(context, 0, list);
         this.context = context;
-        this.list = list;
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -48,14 +46,13 @@ public class AdapterForDailyForecast extends ArrayAdapter {
             holder.date = convertView.findViewById(R.id.date);
             holder.maximum = convertView.findViewById(R.id.maximum);
             holder.minimum = convertView.findViewById(R.id.minimum);
-            holder.image = convertView.findViewById(R.id.icon);
+            holder.weatherIcon = convertView.findViewById(R.id.icon);
             convertView.setTag(holder);
-            Log.d("getWeatherMore", holder.toString());
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        DailyForecast model = (DailyForecast) getItem(position);
 
+        DailyForecast model = (DailyForecast) getItem(position);
         if (model != null) {
             holder.date.setText(model.getDate() != null ? getFormattedDate(model.getDate()) : "");
             holder.maximum.setText(model.getTemperature().getMaximum().getValue().toString() + "°" + model.getTemperature().getMaximum().getUnit());
@@ -68,7 +65,7 @@ public class AdapterForDailyForecast extends ArrayAdapter {
             } else {
                 imageUrl = String.format(Constans.ICONS_URLMORE, icon);
             }
-            Picasso.get().load(imageUrl).into(holder.image);
+            Picasso.get().load(imageUrl).into(holder.weatherIcon);
         }
         return convertView;
     }
@@ -77,9 +74,11 @@ public class AdapterForDailyForecast extends ArrayAdapter {
         if (stringDate == null) {
             throw new IllegalArgumentException("Parsing error");
         }
+
         Locale locale = new Locale("en");
         stringDate = stringDate.substring(0, 20);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", locale);
+
         try {
             return formatter.parse(stringDate);
         } catch (ParseException e) {
@@ -87,10 +86,9 @@ public class AdapterForDailyForecast extends ArrayAdapter {
         }
     }
 
-    public static String getFormattedDate(String resourceDate) throws IllegalArgumentException {
+    private static String getFormattedDate(String resourceDate) throws IllegalArgumentException {
         SimpleDateFormat formatter = new SimpleDateFormat("MMMM d, EEEE", new Locale("en"));
         Date date = getDate(resourceDate);
         return formatter.format(date);
     }
-
 }

@@ -1,9 +1,9 @@
 package com.example.user.weather.network;
 
-import com.example.user.weather.models.currentWeatherModels.CurrentModel;
-import com.example.user.weather.models.Example;
-import com.example.user.weather.models.forecastModels.Forecast;
-import com.example.user.weather.models.searchPlaceModels.SearchPlaceModel;
+import com.example.user.weather.model.currentWeatherModels.CurrentModel;
+import com.example.user.weather.model.Example;
+import com.example.user.weather.model.forecastModels.Forecast;
+import com.example.user.weather.model.searchPlaceModels.SearchPlaceModel;
 import com.example.user.weather.utils.Constans;
 
 import java.util.List;

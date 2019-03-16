@@ -1,5 +1,5 @@
 
-package com.example.user.weather.models.forecastModels;
+package com.example.user.weather.model.forecastModels;
 
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
